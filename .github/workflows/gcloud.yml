@@ -13,4 +13,4 @@ jobs:
           PROJECT_ID: ${{secrets.GCLOUD_PROJECT_ID}}
           APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
         with:
-          args: functions deploy trigger-candy  --trigger-http  --runtime go111 --entry-point ParticleHandler --env-vars-file=env.local.yml --source particle
+          args: functions deploy trigger-candy  --trigger-http  --runtime go111 --entry-point ParticleHandler --set-env-vars=ACCESS_TOKEN=${{secrets.ACCESS_TOKEN}},DEVICE_ID=${{secrets.DEVICE_ID}},PARTICLE_FUNCTION_NAME=${{secrets.PARTICLE_FUNCTION_NAME}} --source particle
