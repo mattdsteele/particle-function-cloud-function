@@ -1,0 +1,16 @@
+name: gcloud
+on: [push]
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: exelban/gcloud@master
+        env:
+          PROJECT_ID: ${{secrets.GCLOUD_PROJECT_ID}}
+          APPLICATION_CREDENTIALS: ${{secrets.GOOGLE_APPLICATION_CREDENTIALS}}
+        with:
+          args: functions deploy trigger-candy  --trigger-http  --runtime go111 --entry-point ParticleHandler --env-vars-file=env.local.yml --source particle
