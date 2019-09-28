@@ -11,7 +11,7 @@ import (
 func Trigger() {
 	deviceID := os.Getenv("DEVICE_ID")
 	accessToken := os.Getenv("ACCESS_TOKEN")
-	functionName := os.Getenv("FUNCTION_NAME")
+	functionName := os.Getenv("PARTICLE_FUNCTION_NAME")
 	endpoint := "https://api.particle.io/v1/devices/" + deviceID + "/" + functionName
 	resp, err := http.PostForm(endpoint, url.Values{"access_token": {accessToken}})
 	if err != nil {
